@@ -4,7 +4,7 @@ This is tutorial follow for a Next.js ecommerce web app.
 
 Clone Repo
 Have Node installed. Using V18 LTS
-`npm i' in project directory
+`npm i` project root directory
 `npm run dev` to start local server.
 
 ## Included Tech

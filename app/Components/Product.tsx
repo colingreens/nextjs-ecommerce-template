@@ -1,7 +1,8 @@
-import { ProductTypes } from "@/types/ProductTypes";
 import formatPrice from "@/util/PriceFormat";
 import Image from "next/image";
 import Link from "next/link";
+
+import { ProductTypes } from "@/types/ProductTypes";
 
 export default function Product({
   name,

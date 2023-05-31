@@ -1,6 +1,8 @@
-import { SearchParamTypes } from "@/types/SearchParamTypes";
-import Image from "next/image";
+import AddCart from "./AddCart";
 import formatPrice from "@/util/PriceFormat";
+import Image from "next/image";
+
+import { SearchParamTypes } from "@/types/SearchParamTypes";
 
 export default async function Product({ searchParams }: SearchParamTypes) {
   return (
@@ -22,9 +24,7 @@ export default async function Product({ searchParams }: SearchParamTypes) {
               : "N/A"}
           </p>
         </div>
-        <button className="my-12 text-white py-2 px-6 font-medium rounded-md bg-teal-700">
-          Add to cart
-        </button>
+        <AddCart {...searchParams} />
       </div>
     </div>
   );

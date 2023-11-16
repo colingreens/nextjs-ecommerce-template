@@ -5,6 +5,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { useCartStore } from "@/store";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import CheckoutForm from "./CheckoutForm";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
@@ -22,7 +23,7 @@ export default function Checkout() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         items: cartStore.cart,
-        payment_intent_id: cartStore.paymentIntent,
+        payment_intent: cartStore.paymentIntent,
       }),
     })
       .then((res) => {
@@ -38,5 +39,23 @@ export default function Checkout() {
       });
   }, []);
 
-  return <div>Checkout</div>;
+  const options: StripeElementsOptions = {
+    clientSecret,
+    appearance: {
+      theme: "stripe",
+      labels: "floating",
+    },
+  };
+
+  return (
+    <div>
+      {clientSecret && (
+        <div>
+          <Elements options={options} stripe={stripePromise}>
+            <CheckoutForm clientSecret={clientSecret} />
+          </Elements>
+        </div>
+      )}
+    </div>
+  );
 }
